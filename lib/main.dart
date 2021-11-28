@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       onBuild: (context, _) {
         providersContext().read(featureStatesProvider.featuresMap).load({
           'features': [
-            {'name': 'last_login', 'state': 'ACTIVE'},
+            {'name': 'lyricFinder', 'state': 'ACTIVE'},
           ]
         });
       },

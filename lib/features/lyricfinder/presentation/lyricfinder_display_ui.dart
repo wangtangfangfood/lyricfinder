@@ -14,31 +14,29 @@ class LyricFinderDisplayUI extends UI<LyricFinderViewModel> {
     final lyrics = viewModel.lyrics;
 
     return Scaffold(
-      body: SafeArea(
-        child: _LazyCountryListWidget(
-          isLoading: viewModel.isLoading,
-          child: ListView(
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    lyrics,
-                    style: Theme.of(context).textTheme.caption,
-                  ),
+      body: LyricDisplayWidget(
+        isLoading: viewModel.isLoading,
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  lyrics,
+                  style: Theme.of(context).textTheme.caption,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _LazyCountryListWidget extends StatelessWidget {
-  const _LazyCountryListWidget({
+class LyricDisplayWidget extends StatelessWidget {
+  const LyricDisplayWidget({
     Key? key,
     required this.isLoading,
     required this.child,
@@ -49,6 +47,7 @@ class _LazyCountryListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return SizedBox();
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
       child: isLoading
@@ -56,13 +55,16 @@ class _LazyCountryListWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: const [
                   SizedBox(
                     width: 20,
                     height: 20,
                     child: CircularProgressIndicator(strokeWidth: 1),
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(
+                    width: 10,
+                    height: 20,
+                  ),
                   Text('Fetching Lyrics ...'),
                 ],
               ),
